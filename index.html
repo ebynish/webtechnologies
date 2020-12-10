@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Web Challenge</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div class="container">
+			
+			</div>
+		</div>
+		<div class="container-main">
+			<div class="sidebar">
+				<div >
+					<img src="./img/logo.png" class="logo">
+				</div>
+				<div>
+					<ul class="menu">
+						<li>
+							<a href="#">
+								<img src="./icons/gauge-dashboard.png" width="25px">
+								<span class="text">Dashboard</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="./icons/building-modern.png" width="25px">
+								<span class="text">Organization</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="#" >
+								<img src="./icons/house.png" width="25px">
+								<span class="text">Location</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="./icons/human-resources-hierarchy.png" width="25px">
+								<span class="text">Department</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="./icons/tablet.png" width="25px">
+								<span class="text">Devices</span>
+							</a>
+						</li>						
+						<li>
+							<a href="#">
+								<img src="./icons/team-exchange-chat.png" width="25px">
+								<span class="text">Visitors</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="./icons/credit-card.png" width="25px">
+								<span class="text">Billing</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="./icons/single-neutral.png" width="25px">
+								<span class="text">Profile</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="./icons/logout.png" width="25px">
+								<span class="text">Logout</span>
+							</a>
+						</li>												
+					</ul>
+				</div>
+			</div>
+			<div class="main">
+				<div style="margin-top: 200px">
+					<img src="./icons/house.png" width="150px">
+					<h1> Add Location</h1>
+					<p>Locations are where you receive visitors</p>
+					<button class="btn" > Add</button>
+
+					<div class="result" style="margin-top: 20px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	let addButton = document.querySelector(".btn");
+	let showResult = document.querySelector(".result");
+	addButton.addEventListener("click", ()=>{
+		fetch('https://v6.exchangerate-api.com/v6/1106382b512ec80e5f805820/latest/USD')
+		  .then((response)=> {
+		    return response.json();
+		  })
+		  .then((response)=> {
+		  	let resultString = "";
+		  	let rates = response.conversion_rates;
+		  	for(var curr in rates){
+			  resultString+=curr+" - "+rates[curr]+",   "; 
+			}
+
+		    showResult.innerHTML=resultString;
+		    resultString = "";
+		  })
+		  .catch((error)=>{
+		    console.log(error);
+		  });
+	});
+</script>
+</body>
+</html>
+
